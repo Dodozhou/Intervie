@@ -1,30 +1,4 @@
-# 面试知识点总结
-* 笔记向，不定期更新。
-* 没有太多需要理解的东西，需要理解的部分自行学习。
-* 自己总结，如果有错的地方欢迎指正。
-* 以下所有内容均来自于互联网
-* 部分内容为个人整理和提炼，侵删。
-* 找到工作了。。。可能维护缓慢了，有兴趣一起维护的可以私聊我
-
-# 数据库
-1. 索引相关
-    * 什么是索引  
-    索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可快速访问数据库表中的特定信息。
-    * 什么时候使用索引  
-    能够提升效率的时候使用索引。  
-        * 在作为主键的列上，唯一性约束的列（不过大部分数据库会自动加索引）；
-        * 在经常用在连接的列上，这些列主要是一些外键，可以加快连接的速度；
-        * 在经常需要排序的列上创建索引，这样查询可以利用索引的排序，加快排序查询时间；
-        * 在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。
-    * 什么时候不能使用索引  
-    不能够提升效率的时候不使用索引，例如：该列很少进行查找或排序操作
-    * 什么时候索引会失效
-        * 查询的结果太大，性能消耗大于使用索引
-        * where里面存在!=
-        * 模糊查询的时候，通配符在第一个
-        * where查询null值
-        
-3. 数据库连接方法
+   3. 数据库连接方法
     1. DriverManager
     ```java
     Connection conn = DriverManager.getConnection("连接URL","用户名","密码");
@@ -37,17 +11,7 @@
     ```
     2. 用JDBC连接池，如C3P0
 
-1. 事务（Transaction）
-    * 事务是是一个操作序列，这些操作要么都执行，要么都不执行，它是一个不可分割的工作单位。
-    * 事务的四个属性 
-        * 原子性 Atomic  
-        就是事务应作为一个工作单元,事务处理完成，所有的工作要么都在数据库中保存下来，要么完全回滚，全部不保留 
-        * 一致性 Consistent  
-        事务完成或者撤销后，都应该处于一致的状态
-        * 隔离性 Isolated  
-        多个事务同时进行，它们之间应该互不干扰.应该防止一个事务处理其他事务也要修改的数据时，不合理的存取和不完整的读取数据 
-        * 永久性 Durable  
-        事务提交以后，所做的工作就被永久的保存下来 
+
 
 1. 什么是存储过程？有哪些优缺点？  
 存储过程是一些预编译的SQL语句。  
@@ -109,18 +73,8 @@
     * 插入过程：  
     ![插入过程](https://raw.githubusercontent.com/llysrv/Interview/master/img/B-tree.jpg)
     
-# 框架
-### Spring
-1. spring 的优点？
-    * 降低了组件之间的耦合性;
-    * 提供了众多服务，如事务管理等 
-    * 容器提供单例模式支持 
-    * 容器提供了AOP技术，利用它很容易实现运行期监控等功能 
-    * spring对于主流的应用框架提供了集成支持，如hibernate等 
-    * spring属于低侵入式设计，代码的污染极低 
-    * 独立于各种应用服务器 
-    * spring的IOC机制降低了业务对象替换的复杂性 
-    * Spring的高度开放性，并不强制应用完全依赖于Spring，开发者可以自由选择spring的部分或全部 
+
+
 
 2. IOC
     * 在Java开发中，IoC意味着将你设计好的类交给系统去控制，而不是在你的类内部控制。  
@@ -131,24 +85,18 @@
 
 ### Spring MVC
 ### Mybatis
-1. #{}和${}的区别是什么？
-    * ${}是Properties文件中的变量占位符，它可以用于标签属性值和sql内部，属于静态文本替换，比如${driver}会被静态替换为com.mysql.jdbc.Driver。#{}是sql的参数占位符，Mybatis会将sql中的#{}替换为?号，在sql执行前会使用PreparedStatement的参数设置方法，按序给sql的?号占位符设置参数值，比如ps.setInt(0, parameterValue)，#{item.name}的取值方式为使用反射从参数对象中获取item对象的name属性值，相当于param.getItem().getName()。
+
 2. Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？
     * 还有很多其他的标签，<resultMap>、<parameterMap>、<sql>、<include>、<selectKey>，加上动态sql的9个标签，trim|where|set|foreach|if|choose|when|otherwise|bind等，其中<sql>为sql片段标签，通过<include>标签引入sql片段，<selectKey>为不支持自增的主键生成策略标签。
 3. 最佳实践中，通常一个Xml映射文件，都会写一个Dao接口与之对应，请问，这个Dao接口的工作原理是什么？Dao接口里的方法，参数不同时，方法能重载吗？
     * Dao接口，就是人们常说的Mapper接口，接口的全限名，就是映射文件中的namespace的值，接口的方法名，就是映射文件中MappedStatement的id值，接口方法内的参数，就是传递给sql的参数。Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为key值，可唯一定位一个MappedStatement，举例：com.mybatis3.mappers.StudentDao.findStudentById，可以唯一找到namespace为com.mybatis3.mappers.StudentDao下面id = findStudentById的MappedStatement。在Mybatis中，每一个<select>、<insert>、<update>、<delete>标签，都会被解析为一个MappedStatement对象。
     * Dao接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。
     * Dao接口的工作原理是JDK动态代理，Mybatis运行时会使用JDK动态代理为Dao接口生成代理proxy对象，代理对象proxy会拦截接口方法，转而执行MappedStatement所代表的sql，然后将sql执行结果返回。
-4. Mybatis是如何进行分页的？分页插件的原理是什么？
-    * 答：Mybatis使用RowBounds对象进行分页，它是针对ResultSet结果集执行的内存分页，而非物理分页，可以在sql内直接书写带有物理分页的参数来完成物理分页功能，也可以使用分页插件来完成物理分页。
-    * 分页插件的基本原理是使用Mybatis提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的sql，然后重写sql，根据dialect方言，添加对应的物理分页语句和物理分页参数。
-    * 举例：select * from student，拦截sql后重写为：select t.* from （select * from student）t limit 0，10
+
 5. 简述Mybatis的插件运行原理，以及如何编写一个插件。
     * 答：Mybatis仅可以编写针对ParameterHandler、ResultSetHandler、StatementHandler、Executor这4种接口的插件，Mybatis使用JDK的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4种接口对象的方法时，就会进入拦截方法，具体就是InvocationHandler的invoke()方法，当然，只会拦截那些你指定需要拦截的方法。
     * 实现Mybatis的Interceptor接口并复写intercept()方法，然后在给插件编写注解，指定要拦截哪一个接口的哪些方法即可，记住，别忘了在配置文件中配置你编写的插件。
-7. Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理不？
-    * 答：Mybatis动态sql可以让我们在Xml映射文件内，以标签的形式编写动态sql，完成逻辑判断和动态拼接sql的功能，Mybatis提供了9种动态sql标签trim|where|set|foreach|if|choose|when|otherwise|bind。
-    * 其执行原理为，使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能。
+
 8. Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？
     * 答：第一种是使用<resultMap>标签，逐一定义列名和对象属性名之间的映射关系。第二种是使用sql列的别名功能，将列别名书写为对象属性名，比如T_NAME AS NAME，对象属性名一般是name，小写，但是列名不区分大小写，Mybatis会忽略列名大小写，智能找到与之对应对象属性名，你甚至可以写成T_NAME AS NaMe，Mybatis一样可以正常工作。
     * 有了列名与属性名的映射关系后，Mybatis通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。
@@ -193,15 +141,7 @@
     * 答：Mybatis将所有Xml配置信息都封装到All-In-One重量级对象Configuration内部。在Xml映射文件中，<parameterMap>标签会被解析为ParameterMap对象，其每个子元素会被解析为ParameterMapping对象。<resultMap>标签会被解析为ResultMap对象，其每个子元素会被解析为ResultMapping对象。每一个<select>、<insert>、<update>、<delete>标签均会被解析为MappedStatement对象，标签内的sql会被解析为BoundSql对象。
 18. 为什么说Mybatis是半自动ORM映射工具？它与全自动的区别在哪里？
     * 答：Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取，所以它是全自动的。而Mybatis在查询关联对象或关联集合对象时，需要手动编写sql来完成，所以，称之为半自动ORM映射工具。
-### Hibernate
-1. 优化Hibernate的7大措施【不懂。。】
-    * 尽量使用many-to-one，避免使用单项one-to-many
-    * 灵活使用单向one-to-many
-    * 不用一对一，使用多对一代替一对一
-    * 配置对象缓存，不使用集合缓存
-    * 一对多使用Bag 多对一使用Set
-    * 继承使用显示多态 HQL:from object polymorphism="exlicit" 避免查处所有对象
-    * 消除大表，使用二级缓存
+
     
 # 计算机网络
 1. http
