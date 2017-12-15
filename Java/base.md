@@ -14,7 +14,7 @@
         }
         
         ```
-        普通成员变量![osi](https://github.com/yzrds/Interview/Interview/master/img/普通成员变量.png)
+        普通成员变量![osi](https://github.com/yzrds/Interview/master/img/普通成员变量.png)
 ### JVM
 
 1. Java GC如何判断对象是否为垃圾  
