@@ -14,9 +14,11 @@
         }
         
         ```
-        普通成员变量![osi](https://raw.githubusercontent.com/yzrds/Interview/master/img/普通成员变量.png)
+        普通成员变量
+        ![osi](https://raw.githubusercontent.com/yzrds/Interview/master/img/普通成员变量.png)
         静态成员变量:在静态的成员变量中，所有的对象使用的成员变量是同一个，值也一样。当静态成员变量的值被修改了，对象的成员变量值也跟着变化。静态成员变量可以直接用类名来调用，也可以用对象来调用静态成员变量。
-        静态成员变量[1](https://raw.githubusercontent.com/yzrds/Interview/master/img/静态成员变量.png)
+        静态成员变量
+        ![1](https://raw.githubusercontent.com/yzrds/Interview/master/img/静态成员变量.png)
         * 在静态函数中不能使用非静态的成员变量
      2. c#中
      * 用在类里的属性、方法前面，这样的静态属性与方法不需要创建实例就能访问，
