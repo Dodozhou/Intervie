@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by youzeliang on 2017/12/15.
  */
@@ -6,6 +8,7 @@ public class test {
 
     public static void main(String[] args) {
 
+        ArrayList arrayList = new ArrayList();
 
     }
     void talk(){
