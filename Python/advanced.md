@@ -2,7 +2,7 @@
 * 在中括号中提供一个[a,b)区间，步长为c，用冒号分割
 * a默认为0, b默认为len
 * 负下标，为映射成对伊的正下标(idx+k*len)%len,k为整数
-* tuple切片的结果仍是tuple
+* tuple切片的结果仍   是tuple
 * str切片的结果仍是str
 ```Python
 L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
