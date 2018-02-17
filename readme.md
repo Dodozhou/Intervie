@@ -657,7 +657,7 @@
     * 简单修改了一下[DualPivotQuicksort](https://github.com/llysrv/Interview/blob/master/src/sort/DualPivotQuicksort.java)的源码
     * 源码很强
     * 含有：
-        * 插入排序
+        * 插入排序  
         * 普通快排
         * 双轴快排
         * Tim sort
