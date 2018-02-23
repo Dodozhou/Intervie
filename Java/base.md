@@ -37,7 +37,8 @@
     * 转发不会执行转发后的代码；重定向会执行重定向之后的代码 
     * 转发地址栏没有变化；重定向地址栏有变化 
     * 转发必须是在同一台服务器下完成；重定向可以在不同的服务器下完成
-5. 
+5. [在java中String类为什么要设计为不可变](https://www.zhihu.com/question/31345592)
+6. 在所有的会话跟踪技术中，HTTPSession对象是最强大和最通用的，一个用户可以有且最多一个HttpSession，并且不会被其他用户访问到。HTTPSession对象在用户第一次访问网站的时候被自动创建，可以他通过HttpServletRequest的getSession方法来获取该对象
 
 
 ### JVM
