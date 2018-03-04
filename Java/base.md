@@ -39,9 +39,32 @@
     * 转发必须是在同一台服务器下完成；重定向可以在不同的服务器下完成
 5. [在java中String类为什么要设计为不可变](https://www.zhihu.com/question/31345592)
 6. 在所有的会话跟踪技术中，HTTPSession对象是最强大和最通用的，一个用户可以有且最多一个HttpSession，并且不会被其他用户访问到。HTTPSession对象在用户第一次访问网站的时候被自动创建，可以他通过HttpServletRequest的getSession方法来获取该对象
-
-
+7. 存在继承的情况下，初始化的顺序为：
+    * 父类（静态变量、静态初始化块）
+    * 子类（静态变量、静态初始化块）
+    * 父类（变量、初始化块）
+    * 父类（构造器）
+    * 子类（变量、初始化块）
+    * 子类（构造器）
+8. String，StringBuffer and StringBuilder
+    * String 不可变，StringBuffer 和 StringBuilder 可变。
+    * String 不可变，因此是线程安全的。StringBuilder 不是线程安全的；StringBuffer 是线程安全的，使用 synchronized 来同步。
+9. String不可变的原因？
+    * 可以缓存hash值(因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 等。不可变的特性可以使得 hash 值也不可变，因此就只需要进行一次计算)
+    * String Pool 的需要(如果 String 已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。)
+    * 安全性(String 经常作为参数，例如网络连接参数等，在作为网络连接参数的情况下，如果 String 是可变的，那么在网络连接过程中，String 被改变，改变 String 对象的那一方以为现在连接的是其它主机，而实际情况却不一定是。String 不可变性可以保证参数不可变。)
+    * 线程安全(String 不可变性天生具备线程安全，可以在多个线程中使用。)
+10. 反射(待写入博客)
+    * 每个类都有一个 Class 对象，包含了与类有关的信息。当编译一个新类时，会产生一个同名的 .class 文件，该文件内容保存着 Class 对象。
+11. Java中的泛型是什么？使用泛型的好处是什么？
+    * 把正确类型的对象放入集合中，避免了在运行时出现ClassCastException。
+12. 多态的三个条件
+    * 继承
+    * 覆盖父类方法
+    * 向上转型    
+       
 ### JVM
+
 
 1. Java GC如何判断对象是否为垃圾  
 根搜索算法，根：
